@@ -550,3 +550,41 @@ footer {
   margin-top: 16px;
   color: #777;
 }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f7f7f7;
+}
+
+.create-board-btn {
+  background-color: #ffffff;
+  color: #000000;
+  padding: 8px 16px;
+  border: solid 1px blcak;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right: 5%;
+}
+
+.create-board-btn:hover{
+  background-color: #000000;
+  color: #fff;
+}
+
+.filter-btn {
+  background-color: #e2e2e2;
+  color: #000000;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  margin-left: 5%;
+}
+
+.filter-btn:hover{
+  background-color: #000000;
+  color: #e2e2e2;
+}
