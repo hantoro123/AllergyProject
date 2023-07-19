@@ -21,7 +21,7 @@ def uexport(c, li):
         
         li += "\n"
 
-    f = open("C:/Users/user/Project/final_project/allergyProject/UserData.csv", "w", encoding='utf-8')
+    f = open("C:\\Users\\windy\\Desktop\\AllergyProject\\allergyProject\\UserData.csv", "w", encoding='utf-8')
     f.write(li)
     f.close
 
@@ -42,14 +42,14 @@ def pexport(c, li):
                 li = li + str(row[m])
         
         li += "\n"
-
-    f = open("C:/Users/user/Project/final_project/allergyProject/Product.csv", "w", encoding='utf-8')
+# C:\Users\windy\Desktop\AllergyProject\allergyProject
+    f = open("C:\\Users\\windy\\Desktop\\AllergyProject\\allergyProject\\Product.csv", "w", encoding='utf-8')
     f.write(li)
     f.close
 
     return
 
-conn = sqlite3.connect('C:/Users/user/Project/final_project/allergyProject/db.sqlite3')
+conn = sqlite3.connect('C:\\Users\\windy\\Desktop\\AllergyProject\\allergyProject\\db.sqlite3')
 c = conn.cursor()
 
 user_te = "rnum,gender,older,allergy,prdlstNm,rating,prdlstReportNo"
@@ -131,8 +131,8 @@ def getRecommendation (data, allergy, sim_function=sim_person):
 
 
 # user data, product data 읽기
-choice_data = pd.read_csv('C:/Users/user/Project/final_project/allergyProject/UserData.csv', on_bad_lines='skip')
-product_data = pd.read_csv('C:/Users/user/Project/final_project/allergyProject/Product.csv', on_bad_lines='skip')
+choice_data = pd.read_csv('C:\\Users\\windy\\Desktop\\AllergyProject\\allergyProject\\UserData.csv', on_bad_lines='skip')
+product_data = pd.read_csv('C:\\Users\\windy\\Desktop\\AllergyProject\\allergyProject\\Product.csv', on_bad_lines='skip')
 
 # product data 전처리
 product_data.drop('rawmtrl', axis=1, inplace=True)
@@ -172,7 +172,7 @@ print("\n")
 ###############################################################################################################
 
 # 음식 csv 파일 가져오기
-food_data = pd.read_csv('C:/Users/user/Project/final_project/allergyProject/Product.csv', on_bad_lines='skip') # csv 파일 위치로 바꾸기
+food_data = pd.read_csv('C:\\Users\\windy\\Desktop\\AllergyProject\\allergyProject\\Product.csv', on_bad_lines='skip') # csv 파일 위치로 바꾸기
 fmaterial=[]   # 재료 넣을 list
 fname=[]       # 음식 이름 넣을 list
 
