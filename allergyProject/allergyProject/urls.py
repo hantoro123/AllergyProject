@@ -16,16 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from mainapp import views as mainviews
-from searchapp import views as searchviews
-from board import views as boardviews
-from signapp import views as signviews
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', mainviews.home, name='home'),
     path('about/', mainviews.about, name='about'),
-    # path('search/', searchviews.searchResult, name='search'),
-    path('', include('searchapp.urls')),
-    path('', include('board.urls')),
-    path('', include('signapp.urls'))
+    path('search/', include('searchapp.urls')),
+    path('board/', include('board.urls')),
+    path('register/', include('signapp.urls'))
 ]
