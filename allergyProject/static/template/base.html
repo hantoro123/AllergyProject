@@ -14,7 +14,8 @@
           <a href="{% url 'home' %}"><h1>Allergen</h1></a>
         </div>
         <div class="search">
-          <form action="{% url 'searchapp:searchResult' %}" method="get">
+          <!-- <form action="{% url 'searchapp:searchResult' %}" method="get"> -->
+          <form action="" method="">
             <!-- <div class="rangedropdown">
               <button class="dropbtn">검색범위</button>
               <div class="dropdown-content">
@@ -39,7 +40,7 @@
         </div>
         <div class="menu">
           <ul>
-            <li><a href="{% url 'board:board' %}">Board</a></li>
+            <li><a href="{% url 'board:board_list' %}">Board</a></li>
             {% if user.is_authenticated %}
             <li><a href="{% url 'signapp:mypage' %}">{{ username }}</a></li>
             <li><a href="{% url 'signapp:login' %}">Logout</a></li>

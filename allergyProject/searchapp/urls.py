@@ -1,10 +1,10 @@
 from django.urls import path
-from . import views as searchviews
+from . import views 
 
 app_name = 'searchapp'
 
 urlpatterns = [
-    path('search/', searchviews.searchResult, name='searchResult'),
-    path('detail/', searchviews.Detail, name='Detail')
+    path('', views.searchResult, name='searchResult'),
+    path('search_detail/', views.Detail, name='Detail')
 ]
 
