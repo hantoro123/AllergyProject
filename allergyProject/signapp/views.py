@@ -1,12 +1,16 @@
 from django.shortcuts import render
-
+from django.urls import reverse_lazy
+from django.views.generic import TemplateView, CreateView
+from signapp.models import User
 # Create your views here.
 
-def Login (request):
-    return render(request, 'login.html')
+class LoginView (TemplateView):
+    template_name = 'signapp/login.html'
 
-def Signup (request):
-    return render(request, 'signup.html')
+class SignupView (CreateView):
+    model = User
+    fields = "__all__"
+    success_url = reverse_lazy("mainapp:home")
 
-def Mypage (request):
-    return render(request, 'mypage.html')
+class MypageView (TemplateView):
+    template_name = 'signapp/mypage.html'
