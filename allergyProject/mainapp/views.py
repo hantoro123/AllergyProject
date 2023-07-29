@@ -1,8 +1,11 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views.generic import TemplateView
 
 # Create your views here.
-def home (request):
-    return render(request, 'home.html')
 
-def about (request):
-    return render(request, 'about.html')
+class HomeView(TemplateView):
+    template_name = 'mainapp/home.html'
+
+class AboutView(TemplateView):
+    template_name = 'mainapp/about.html'
