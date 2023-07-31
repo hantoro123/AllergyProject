@@ -21,6 +21,7 @@ class DetailView(TemplateView):
 
 
 class BoardCreateView(CreateView):
+    template_name = 'board/board_form.html'
     model = Board
     fields = "__all__"
     success_url = reverse_lazy("board:board_list")
