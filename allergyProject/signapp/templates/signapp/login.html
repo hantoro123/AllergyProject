@@ -3,7 +3,8 @@
 {% block content %}
   <div class="login-form">
     <h1>로그인</h1>
-    <form>
+    <form method="GET">
+      {% csrf_token %}
       <input type="text" placeholder="사용자명" name="username" required>
       <input type="password" placeholder="비밀번호" name="password" required>
       <input type="submit" value="로그인">
