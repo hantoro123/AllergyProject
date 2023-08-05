@@ -6,9 +6,9 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 current_working_directory = os.getcwd()
-Userdata_file_path = current_working_directory+"\\allergyProject\\UserData.csv"
-Product_file_path = current_working_directory+"\\allergyProject\\Product.csv"
-DB_file_path = current_working_directory+"\\allergyProject\\db.sqlite3"
+Userdata_file_path = current_working_directory+"\\UserData.csv"
+Product_file_path = current_working_directory+"\\Product.csv"
+DB_file_path = current_working_directory+"\\db.sqlite3"
 
 print("---------------------------------------")
 print("현재 환경에서 유저 데이터의 경로는?")
@@ -20,6 +20,7 @@ print("---------------------------------------")
 print("현재 환경에서 DB 데이터의 경로는?")
 print(DB_file_path)
 print("---------------------------------------")
+
 
 def uexport(c, li):
     li += "\n"
