@@ -5,6 +5,22 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
+current_working_directory = os.getcwd()
+Userdata_file_path = current_working_directory+"\\UserData.csv"
+Product_file_path = current_working_directory+"\\Product.csv"
+DB_file_path = current_working_directory+"\\db.sqlite3"
+
+print("---------------------------------------")
+print("현재 환경에서 유저 데이터의 경로는?")
+print(Userdata_file_path)
+print("---------------------------------------")
+print("현재 환경에서 제품 데이터의 경로는?")
+print(Product_file_path)
+print("---------------------------------------")
+print("현재 환경에서 DB 데이터의 경로는?")
+print(DB_file_path)
+print("---------------------------------------")
+
 
 def uexport(c, li):
     li += "\n"
@@ -21,7 +37,7 @@ def uexport(c, li):
         
         li += "\n"
 
-    f = open("C:\\Users\\windy\\Desktop\\AllergyProject\\allergyProject\\UserData.csv", "w", encoding='utf-8')
+    f = open(Userdata_file_path, "w", encoding='utf-8')
     f.write(li)
     f.close
 
@@ -42,14 +58,14 @@ def pexport(c, li):
                 li = li + str(row[m])
         
         li += "\n"
-# C:\Users\windy\Desktop\AllergyProject\allergyProject
-    f = open("C:\\Users\\windy\\Desktop\\AllergyProject\\allergyProject\\Product.csv", "w", encoding='utf-8')
+
+    f = open(Product_file_path, "w", encoding='utf-8')
     f.write(li)
     f.close
 
     return
 
-conn = sqlite3.connect('C:\\Users\\windy\\Desktop\\AllergyProject\\allergyProject\\db.sqlite3')
+conn = sqlite3.connect(DB_file_path)
 c = conn.cursor()
 
 user_te = "rnum,gender,older,allergy,prdlstNm,rating,prdlstReportNo"
@@ -131,8 +147,8 @@ def getRecommendation (data, allergy, sim_function=sim_person):
 
 
 # user data, product data 읽기
-choice_data = pd.read_csv('C:\\Users\\windy\\Desktop\\AllergyProject\\allergyProject\\UserData.csv', on_bad_lines='skip')
-product_data = pd.read_csv('C:\\Users\\windy\\Desktop\\AllergyProject\\allergyProject\\Product.csv', on_bad_lines='skip')
+choice_data = pd.read_csv(Userdata_file_path, on_bad_lines='skip')
+product_data = pd.read_csv(Product_file_path, on_bad_lines='skip')
 
 # product data 전처리
 product_data.drop('rawmtrl', axis=1, inplace=True)
@@ -172,7 +188,7 @@ print("\n")
 ###############################################################################################################
 
 # 음식 csv 파일 가져오기
-food_data = pd.read_csv('C:\\Users\\windy\\Desktop\\AllergyProject\\allergyProject\\Product.csv', on_bad_lines='skip') # csv 파일 위치로 바꾸기
+food_data = pd.read_csv(Product_file_path, on_bad_lines='skip') # csv 파일 위치로 바꾸기
 fmaterial=[]   # 재료 넣을 list
 fname=[]       # 음식 이름 넣을 list
 
