@@ -1,10 +1,16 @@
+# TQ : Test Query
+
 import pymysql
 
 # allergydb 생성 필요 #
 conn = pymysql.connect(host='localhost',user='root',password='2017018023',db='allergydb',charset='utf8')
 cursor = conn.cursor()
 
-# Test Query #
+# TQ #
+sql = """DROP TABLE test;"""
+
+cursor.execute(sql)
+
 sql = """CREATE TABLE test(
     id INT,
     PRIMARY KEY(id)
@@ -12,7 +18,10 @@ sql = """CREATE TABLE test(
 """
 
 cursor.execute(sql)
-cursor.execute("SHOW TABLES")
+# TQ #
+
+# cursor.execute("use allergydb;")
+# cursor.execute("SHOW TABLES;")
 
 conn.commit()
 conn.close()
