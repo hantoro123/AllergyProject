@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'allergyProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'AllergyDB',
+        'NAME': 'allergydb',
         'USER': 'root',
         'PASSWORD': '2017018023',
         'HOST': 'localhost',
