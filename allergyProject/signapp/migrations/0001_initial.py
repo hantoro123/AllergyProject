@@ -12,12 +12,13 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Board',
+            name='User',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=30)),
-                ('writer', models.CharField(max_length=30)),
-                ('content', models.TextField()),
+                ('user_name', models.CharField(max_length=10)),
+                ('email', models.EmailField(max_length=30)),
+                ('phone', models.CharField(max_length=15)),
+                ('password', models.CharField(max_length=30)),
             ],
         ),
     ]
