@@ -5,14 +5,16 @@ import pymysql
 
 # dictionary인 prdlst를 tuple인 procData로 변경 #
 def Processed(dict):
-
-    procData = (dict['prdlstReportNo'],
-                dict['prdlstNm'],
-                dict['prdkind'],
-                dict['rawmtrl'],
-                dict['allergy'],
-                dict['imgurl1'],
-                dict['manufacture'])
+    try:
+        procData = (dict['prdlstReportNo'],
+                    dict['prdlstNm'],
+                    dict['prdkind'],
+                    dict['rawmtrl'],
+                    dict['allergy'],
+                    dict['imgurl1'],
+                    dict['manufacture'])
+    except KeyError:
+        return 0
 
     # 확인용 #
     # print(procData)
@@ -49,7 +51,10 @@ try:
         res = requests.get(URL, params=parameters, verify=False)
 
         if res:
-            data = json.loads(res.text)['body']['items']
+            try:
+                data = json.loads(res.text)['body']['items']
+            except:
+                continue
 
             for i in data:
                 prdlst = i['item']
@@ -59,8 +64,9 @@ try:
 
                 # 수정 필요 #
                 # 사항 : data가 없으면 insert 있으면 update #
-                cur.execute("""INSERT INTO searchapp_product(prdlstReportNo, prdlstNm, prdkind, rawmtrl, allergy, image, manufacture) VALUES(%s, %s, %s, %s, %s, %s, %s)""", procData)
-                conn.commit()
+                if procData:
+                    cur.execute("""INSERT INTO searchapp_product(prdlstReportNo, prdlstNm, prdkind, rawmtrl, allergy, image, manufacture) VALUES(%s, %s, %s, %s, %s, %s, %s)""", procData)
+                    conn.commit()
             
             pageNo += 1
 
