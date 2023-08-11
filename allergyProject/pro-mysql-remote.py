@@ -26,7 +26,7 @@ cur = conn.cursor()
 
 # TABLE 생성 Query문 #
 cur.execute("""CREATE TABLE IF NOT EXISTS searchapp_product(
-            prdlstReportNo INTEGER NOT NULL,
+            prdlstReportNo varchar(200) NOT NULL,
             prdlstNm varchar(200),
             prdkind varchar(200),
             rawmtrl TEXT,
