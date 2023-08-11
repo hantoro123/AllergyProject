@@ -36,7 +36,10 @@ cur.execute("""CREATE TABLE IF NOT EXISTS searchapp_product(
             manufacture varchar(200),
             PRIMARY KEY (prdlstReportNo))""")
 
-# json파일 불러오기 #
+# TABLE DATA 초기화 (테스트용) #
+cur.execute("""DELETE FROM searchapp_product""")
+
+# 공공데이터 크롤링 후 searchapp_product table에 입력 #
 try:
     serviceKey = "KRFgFYY3tfo9A3cGfNrr%2Bzaib9lhbXTPnsWS149Apg2Vg%2Frl%2BaI9cVAVMQoMPFzLW23jYOdrysnHWISruWgzTA%3D%3D"
     pageNo = 1
@@ -45,9 +48,6 @@ try:
         URL = "http://apis.data.go.kr/B553748/CertImgListService/getCertImgListService"
         parameters = {"serviceKey" : unquote(serviceKey), "pageNo" : str(pageNo), "returnType" : "json"}
         res = requests.get(URL, params=parameters, verify=False)
-
-        print(res.url)
-        print(res.text)
 
         if res:
             data = json.loads(res.text)['body']['items']
@@ -67,5 +67,6 @@ try:
 
         else:
             break
+        
 finally:
     conn.close()
