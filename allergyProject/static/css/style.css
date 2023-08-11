@@ -513,12 +513,11 @@ footer {
 
 .signup-form .gender-label-container {
   text-align: center;
-  margin-top: 6px; /* 버튼과 생년월일 간의 간격 추가 */
 }
 
 .signup-form .gender-label {
   display: inline-block;
-  width: 130px; /* 버튼 너비 조정 */
+  width: 146px; /* 버튼 너비 조정 */
   margin: 0 0px; /* 버튼 사이의 간격 추가 */
   padding: 6px 0;
   cursor: pointer;
@@ -537,14 +536,13 @@ footer {
   background-color: #f2f2f2; /* 입력창 배경색 */
   border: 1px solid #ccc;
   border-radius: 4px;
-  padding: 8px;
+  padding: 6px;
   font-size: 16px;
   margin-top: 6px;
 }
 .signup-form label {
   text-align: center;
   display: block;
-  margin-top: 6px;
   color: #333;
 }
 
