@@ -1,4 +1,3 @@
-# TQ : Test Query
 from urllib.parse import unquote
 import requests
 import json
@@ -67,6 +66,6 @@ try:
 
         else:
             break
-        
+
 finally:
     conn.close()
