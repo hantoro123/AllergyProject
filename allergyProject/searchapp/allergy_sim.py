@@ -1,9 +1,6 @@
-import pymysql, json, requests, os
+import pymysql
 import pandas as pd
 from math import sqrt
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
 
 # 유사도 계산 #
 def sim_person(data, allergy1, allergy2):
