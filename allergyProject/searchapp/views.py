@@ -3,6 +3,7 @@ from .models import Product
 from .models import UserData
 from django.db.models import Q
 from searchapp.allergy_sim import *
+from searchapp.food_sim import *
 
 # filter 함수의 Q함수: OR조건으로 데이터를 조회하기 위해 사용하는 함수
 # objects.filter() 는 특정 조건에 해당하면 객체 출력 .get('kw') 은 kw만 반환
@@ -76,21 +77,20 @@ def Detail(request):
         )
         collarbors.append(collarbor)
 
-    # if ('pk' in request.GET):
-    #     pk = request.GET.get('pk')
-    #     id = fname.index(pk)
-    #     for j in range(len(food_simi_cate[id])):
-    #         if food_simi_cate[id][j] >= 0.7 and id != j:
-    #             simquery = fname[j]
-    #             try:
-    #                 int(simquery)
-    #             except ValueError:
-    #                 continue
-    #             similarity = Product.objects.all()
-    #             similarity = similarity.get(
-    #                 Q(prdlstReportNo__exact = simquery)
-    #             )
-    #             similarities.append(similarity)
+    if ('pk' in request.GET):
+        pk = request.GET.get('pk')
+        id = prdlstReportNo.index(pk)
+        for j in range(len(food_simi_cate[id])):
+            if food_simi_cate[id][j] >= 0.7 and id != j:
+                simquery = prdlstReportNo[j]
+                try:
+                    int(simquery)
+                except ValueError:
+                    continue
+                similarity = Product.objects.all()
+                similarity = similarity.get(
+                    Q(prdlstReportNo__exact = simquery)
+                )
+                similarities.append(similarity)
 
-    # return render(request, 'detail.html', {'pk':pk, 'detail':detail, 'collarbors':collarbors, 'similarities':similarities})
-    return render(request, 'detail.html', {'pk':pk, 'detail':detail, 'collarbors':collarbors,})
+    return render(request, 'detail.html', {'pk':pk, 'detail':detail, 'collarbors':collarbors, 'similarities':similarities})

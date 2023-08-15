@@ -97,10 +97,11 @@ merge_data = pd.concat([pdProData, pdChoData], join='outer')
 # 데이터 분포 #
 proAlData = merge_data.pivot_table(4, index=3, columns=2)       # 4 : 'rating', 3 : 'prdlstReportNo', 2: 'allergy'
 proAlData.fillna(0, inplace=True)                               # NaN -> 0
-print(proAlData)
+# print(proAlData)
 
 # 결과 #
 re = getRecommendation(proAlData, '난류')                       # userdata 수집 필요
 print(re[:10])
+print("\n")
 
 conn.close()
