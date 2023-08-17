@@ -161,6 +161,7 @@ choice_data.drop('rnum', axis=1, inplace=True)
 
 # 병합
 merge_data = pd.concat([product_data, choice_data], join='outer')
+print(merge_data)
 
 # 데이터 분포
 product_allergy_data = merge_data.pivot_table('rating', index='prdlstReportNo', columns='allergy')

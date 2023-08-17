@@ -6,7 +6,7 @@ from django.utils import timezone
 # Create your models here.
 
 class Product(models.Model):
-    prdlstReportNo = models.BigIntegerField(primary_key=True)
+    prdlstReportNo = models.CharField(primary_key=True, max_length=20)
     prdlstNm = models.CharField(max_length=200)
     rawmtrl = models.TextField()
     allergy = models.TextField(null=True)
@@ -31,7 +31,7 @@ class UserData(models.Model):
     gender = models.TextField(null=True)
     older = models.IntegerField(null=True)
     allergy = models.TextField()
-    prdlstReportNo = models.BigIntegerField()
+    prdlstReportNo = models.CharField(max_length=20)
     prdlstNm = models.CharField(max_length=200)
     rating = models.IntegerField()
 
