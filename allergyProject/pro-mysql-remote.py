@@ -23,7 +23,7 @@ def Processed(dict):
 
 
 # DB 연결 #
-conn = pymysql.connect(host='localhost',user='root',password='2017018023',db='allergydb',charset='utf8')
+conn = pymysql.connect(host='localhost',user='root',password='2017018023',db='allergydb',charset='utf8',connect_timeout=10000)
 cur = conn.cursor()
 
 # TABLE 생성 Query문 #
@@ -37,39 +37,38 @@ cur.execute("""CREATE TABLE IF NOT EXISTS searchapp_product(
             manufacture varchar(200),
             PRIMARY KEY (prdlstReportNo))""")
 
-# TABLE DATA 초기화 (테스트용) #
-cur.execute("""DELETE FROM searchapp_product""")
-
 # 공공데이터 크롤링 후 searchapp_product table에 입력 #
 try:
     serviceKey = "KRFgFYY3tfo9A3cGfNrr%2Bzaib9lhbXTPnsWS149Apg2Vg%2Frl%2BaI9cVAVMQoMPFzLW23jYOdrysnHWISruWgzTA%3D%3D"
     pageNo = 1
 
     while True:
+        print(pageNo)
         URL = "http://apis.data.go.kr/B553748/CertImgListService/getCertImgListService"
         parameters = {"serviceKey" : unquote(serviceKey), "pageNo" : str(pageNo), "returnType" : "json"}
         res = requests.get(URL, params=parameters, verify=False)
 
-        if res:
-            try:
-                data = json.loads(res.text)['body']['items']
-            except:
-                continue
+        try:
+            data = json.loads(res.text)['body']['items']
+        except:
+            pass
 
+        if data:
             for i in data:
                 prdlst = i['item']
 
                 field = prdlst.keys()
                 procData = Processed(prdlst)
 
-                # 수정 필요 #
-                # 사항 : data가 없으면 insert 있으면 update #
                 if procData:
-                    cur.execute("""INSERT INTO searchapp_product(prdlstReportNo, prdlstNm, prdkind, rawmtrl, allergy, image, manufacture) VALUES(%s, %s, %s, %s, %s, %s, %s)""", procData)
+                    sql = """INSERT INTO searchapp_product(prdlstReportNo, prdlstNm, prdkind, rawmtrl, allergy, image, manufacture) VALUES(%s, %s, %s, %s, %s, %s, %s)"""\
+                        """ON DUPLICATE KEY UPDATE prdlstNm=VALUES(prdlstNm), prdkind=VALUES(prdkind), rawmtrl=VALUES(rawmtrl), allergy=VALUES(allergy), image=VALUES(image), manufacture=VALUES(manufacture)"""
+
+                    cur.execute(sql, procData)
                     conn.commit()
             
             pageNo += 1
-
+        
         else:
             break
 
