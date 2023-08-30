@@ -40,8 +40,8 @@ cur.execute("""CREATE TABLE IF NOT EXISTS searchapp_product(
 # 공공데이터 크롤링 후 searchapp_product table에 입력 #
 try:
     serviceKey = "KRFgFYY3tfo9A3cGfNrr%2Bzaib9lhbXTPnsWS149Apg2Vg%2Frl%2BaI9cVAVMQoMPFzLW23jYOdrysnHWISruWgzTA%3D%3D"
-    # TimeOut 오류시 pageNo = 11153으로 변경 #
-    pageNo = 525
+    # TimeOut 오류시 pageNo 변경 #
+    pageNo = 1
 
     while True:
         print(pageNo)
