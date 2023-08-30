@@ -10,7 +10,7 @@ from board.models import Board
 
 class BoardView(ListView):
     model = Board
-    queryset = Board.objects.order_by('id')
+    queryset = Board.objects.order_by('bno')
     context_object_name = "board_list"
 
 # def DetailView (request):

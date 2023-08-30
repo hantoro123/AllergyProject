@@ -23,7 +23,7 @@ def Processed(dict):
 
 
 # DB 연결 #
-conn = pymysql.connect(host='localhost',user='root',password='2017018023',db='allergydb',charset='utf8',connect_timeout=10000)
+conn = pymysql.connect(host='localhost',user='root',password='2017018023',db='allergydb',charset='utf8',connect_timeout=32768)
 cur = conn.cursor()
 
 # TABLE 생성 Query문 #
@@ -40,7 +40,8 @@ cur.execute("""CREATE TABLE IF NOT EXISTS searchapp_product(
 # 공공데이터 크롤링 후 searchapp_product table에 입력 #
 try:
     serviceKey = "KRFgFYY3tfo9A3cGfNrr%2Bzaib9lhbXTPnsWS149Apg2Vg%2Frl%2BaI9cVAVMQoMPFzLW23jYOdrysnHWISruWgzTA%3D%3D"
-    pageNo = 1
+    # TimeOut 오류시 pageNo = 11153으로 변경 #
+    pageNo = 525
 
     while True:
         print(pageNo)
@@ -63,9 +64,12 @@ try:
                 if procData:
                     sql = """INSERT INTO searchapp_product(prdlstReportNo, prdlstNm, prdkind, rawmtrl, allergy, image, manufacture) VALUES(%s, %s, %s, %s, %s, %s, %s)"""\
                         """ON DUPLICATE KEY UPDATE prdlstNm=VALUES(prdlstNm), prdkind=VALUES(prdkind), rawmtrl=VALUES(rawmtrl), allergy=VALUES(allergy), image=VALUES(image), manufacture=VALUES(manufacture)"""
-
-                    cur.execute(sql, procData)
-                    conn.commit()
+                    
+                    try:
+                        cur.execute(sql, procData)
+                        conn.commit()
+                    except:
+                        pass
             
             pageNo += 1
         
