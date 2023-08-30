@@ -18,6 +18,7 @@ cur.execute("""CREATE TABLE IF NOT EXISTS searchapp_userdata(
 # TABLE DATA 초기화 (테스트용) #
 cur.execute("""DELETE FROM searchapp_userdata""")
 
+# 필요시 주소 변경 바람 #
 f = open('allergyProject/UserData.csv', 'r', encoding='UTF8')
 rdr = csv.reader(f)
 
