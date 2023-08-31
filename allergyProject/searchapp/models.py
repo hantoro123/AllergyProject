@@ -6,7 +6,7 @@ from django.utils import timezone
 # Create your models here.
 
 class Product(models.Model):
-    prdlstReportNo = models.CharField(primary_key=True, max_length=20)
+    prdlstReportNo = models.CharField(primary_key=True, max_length=50)
     prdlstNm = models.CharField(max_length=200)
     rawmtrl = models.TextField()
     allergy = models.TextField(null=True)
